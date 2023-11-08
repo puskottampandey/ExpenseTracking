@@ -1,4 +1,6 @@
+import 'package:expensetracking/provider/homescreen_provider/home_screen_provider.dart';
 import 'package:expensetracking/provider/onboarding_provider/onboarding_provider.dart';
+import 'package:expensetracking/view/screen/addtransaction/addtransaction_screen.dart';
 import 'package:expensetracking/view/screen/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => OnboardingProvider())
+        ChangeNotifierProvider(create: (context) => OnboardingProvider()),
+        ChangeNotifierProvider(create: (context) => AddtransactionProvider())
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
