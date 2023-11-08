@@ -1,4 +1,5 @@
 import 'package:expensetracking/provider/onboarding_provider/onboarding_provider.dart';
+import 'package:expensetracking/view/screen/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const SplashScreen()),
+          home: const HomeScreen()),
     );
   }
 }
