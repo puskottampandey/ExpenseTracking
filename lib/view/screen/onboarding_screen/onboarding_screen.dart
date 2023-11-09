@@ -70,29 +70,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   controller: value.controller,
                   count: value.content.length),
             ),
-            Positioned(
-              left: 220,
-              bottom: 95,
-              child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40)),
-                minWidth: 160,
-                height: 50,
-                color: Colors.lightBlue.shade500,
-                onPressed: () {
-                  value.currentpage == 2
-                      ? Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()))
-                      : value.controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.ease);
-                },
-                child: Text(value.currentpage != 2 ? "Next" : "Get Started",
-                    style:
-                        GoogleFonts.poppins(fontSize: 15, color: Colors.white)),
-              ),
+            Consumer<OnboardingProvider>(
+              builder: (context, value, child) {
+                return Positioned(
+                  left: 220,
+                  bottom: 95,
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    minWidth: 160,
+                    height: 50,
+                    color: Colors.lightBlue.shade500,
+                    onPressed: () {
+                      value.currentpage == 2
+                          ? Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()))
+                          : value.controller.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.ease);
+                    },
+                    child: Text(value.currentpage != 2 ? "Next" : "Get Started",
+                        style: GoogleFonts.poppins(
+                            fontSize: 15, color: Colors.white)),
+                  ),
+                );
+              },
             ),
           ],
         );

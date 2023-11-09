@@ -11,14 +11,6 @@ class AddtransactionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-// for the transaction statement
-  final List<int> _transaction = [];
-  List<int> get transaction => _transaction;
-  void addtransaction(int money) {
-    _transaction.add(money);
-    notifyListeners();
-  }
-
   // for the income and expenses
   final List<String> _choice = ["Income", "Expenses"];
   List<String> get choice => _choice;

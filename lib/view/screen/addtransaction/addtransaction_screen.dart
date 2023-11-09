@@ -1,6 +1,7 @@
 import 'package:expensetracking/provider/homescreen_provider/home_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -55,24 +56,35 @@ class _AddTransactionState extends State<AddTransaction> {
                       }),
                 ),
                 TextField(
+                  cursorColor: Colors.lightBlue.shade400,
                   controller: value.controller,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                       labelText: "Transaction amount",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          color: Colors.red,
+                      labelStyle: TextStyle(color: Colors.lightBlue.shade400),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: BorderSide(
+                          color: Colors.lightBlue.shade400,
                           width: 2.0,
                         ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(5),
                       )),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 MaterialButton(
+                  minWidth: 150,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
                   color: Colors.blue,
                   onPressed: () {
-                    value.addtransaction(int.parse(value.controller.text));
-
+                    Navigator.pop(context);
                     if (value.select == value.choice[0]) {
                       value.addamount(int.parse(value.controller.text));
                       value.totalamount(int.parse(value.controller.text));
@@ -80,7 +92,11 @@ class _AddTransactionState extends State<AddTransaction> {
                       value.decreaseamount(int.parse(value.controller.text));
                     }
                   },
-                  child: const Text("add"),
+                  child: Text(
+                    "Add",
+                    style:
+                        GoogleFonts.poppins(fontSize: 15, color: Colors.white),
+                  ),
                 )
               ],
             );
