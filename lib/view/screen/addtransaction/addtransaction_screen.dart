@@ -13,19 +13,49 @@ class AddTransaction extends StatefulWidget {
 class _AddTransactionState extends State<AddTransaction> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Transaction"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Consumer<AddtransactionProvider>(
           builder: ((context, value, child) {
             return Column(
               children: [
+                SizedBox(
+                  height: 70,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: value.choice.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            value.change(index);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: value.select == value.choice[index]
+                                    ? Colors.blue
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(8)),
+                            width: 100,
+                            margin: const EdgeInsets.all(8),
+                            child: Center(
+                              child: Text(
+                                value.choice[index],
+                                style: TextStyle(
+                                    color: value.select == value.choice[index]
+                                        ? Colors.white
+                                        : Colors.blue),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
                 TextField(
-                  controller: controller,
+                  controller: value.controller,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
@@ -41,9 +71,14 @@ class _AddTransactionState extends State<AddTransaction> {
                 MaterialButton(
                   color: Colors.blue,
                   onPressed: () {
-                    value.totalamount(
-                      int.parse(controller.text),
-                    );
+                    value.transaction.add(int.parse(value.controller.text));
+
+                    if (value.select == value.choice[0]) {
+                      value.addamount(int.parse(value.controller.text));
+                      value.totalamount(int.parse(value.controller.text));
+                    } else {
+                      value.decreaseamount(int.parse(value.controller.text));
+                    }
                   },
                   child: const Text("add"),
                 )

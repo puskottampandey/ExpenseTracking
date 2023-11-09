@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:expensetracking/provider/homescreen_provider/home_screen_provider.dart';
 import 'package:expensetracking/view/screen/addtransaction/addtransaction_screen.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: Colors.white),
                               ),
                               Text(
-                                value.amount.toString(),
+                                "RS.${value.amount.toString()}",
                                 style: GoogleFonts.poppins(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700,
@@ -130,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: GoogleFonts.poppins(
                                                 fontSize: 12,
                                                 color: Colors.white)),
-                                        Text("2,00,000",
+                                        Text("Rs.${value.income}",
                                             style: GoogleFonts.poppins(
                                                 fontSize: 15,
                                                 color: Colors.green)),
@@ -160,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: GoogleFonts.poppins(
                                                 fontSize: 12,
                                                 color: Colors.white)),
-                                        Text("2,00,000",
+                                        Text("Rs.${value.expense}",
                                             style: GoogleFonts.poppins(
                                                 fontSize: 15,
                                                 color: Colors.red)),
@@ -191,19 +189,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: value.transaction.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.arrow_upward_rounded,
-                              color: Colors.green,
-                            ),
-                          ),
-                        );
-                      })
+                  value.transaction.isEmpty
+                      ? const SizedBox(
+                          height: 400,
+                          child: Center(
+                            child: Text("No transaction"),
+                          ))
+                      : Flexible(
+                          child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemCount: value.transaction.length,
+                              itemBuilder: (context, index) {
+                                return Card(
+                                  color: Colors.white,
+                                  child: ListTile(
+                                    leading: const Icon(
+                                      Icons.arrow_upward_rounded,
+                                      color: Colors.green,
+                                    ),
+                                    title: const Text("Income"),
+                                    trailing: Column(
+                                      children: [
+                                        Text(
+                                            "+${int.parse(value.controller.text)}"),
+                                        Text("Rs.${value.amount}"),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                        )
                 ],
               ),
             ),
