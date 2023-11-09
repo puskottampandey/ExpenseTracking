@@ -41,10 +41,9 @@ class _AddTransactionState extends State<AddTransaction> {
                 MaterialButton(
                   color: Colors.blue,
                   onPressed: () {
-                    String numberstring = controller.toString();
-                    int? number = int.parse(
-                        numberstring.replaceAll(RegExp(r'[^0-9]'), ''));
-                    value.addamount(number);
+                    value.totalamount(
+                      int.parse(controller.text),
+                    );
                   },
                   child: const Text("add"),
                 )

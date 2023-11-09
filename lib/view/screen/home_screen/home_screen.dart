@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:expensetracking/provider/homescreen_provider/home_screen_provider.dart';
 import 'package:expensetracking/view/screen/addtransaction/addtransaction_screen.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: MediaQuery.sizeOf(context).width * 0.9,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.lightBlue.shade500),
+                        color: const Color.fromARGB(255, 11, 33, 157)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -188,7 +190,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.poppins(fontSize: 15),
                       ),
                     ],
-                  )
+                  ),
+                  ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: value.transaction.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.arrow_upward_rounded,
+                              color: Colors.green,
+                            ),
+                          ),
+                        );
+                      })
                 ],
               ),
             ),
