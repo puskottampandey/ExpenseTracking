@@ -71,7 +71,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 MaterialButton(
                   color: Colors.blue,
                   onPressed: () {
-                    value.transaction.add(int.parse(value.controller.text));
+                    value.addtransaction(int.parse(value.controller.text));
 
                     if (value.select == value.choice[0]) {
                       value.addamount(int.parse(value.controller.text));

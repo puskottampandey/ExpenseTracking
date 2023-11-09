@@ -37,6 +37,7 @@ dependencies:
   provider: any
   smooth_page_indicator: any
   google_fonts: any
+  fl_chart: any
 
 dev_dependencies:
   flutter_test:

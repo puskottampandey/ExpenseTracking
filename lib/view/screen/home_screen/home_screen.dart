@@ -1,5 +1,6 @@
 import 'package:expensetracking/provider/homescreen_provider/home_screen_provider.dart';
 import 'package:expensetracking/view/screen/addtransaction/addtransaction_screen.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: MediaQuery.sizeOf(context).width * 0.9,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromARGB(255, 11, 33, 157)),
+                        color: Colors.white),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -88,16 +89,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 "Total Balanced",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 "RS.${value.amount.toString()}",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ],
                           ),
@@ -126,8 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         Text("Income",
                                             style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                color: Colors.white)),
+                                              fontSize: 12,
+                                            )),
                                         Text("Rs.${value.income}",
                                             style: GoogleFonts.poppins(
                                                 fontSize: 15,
@@ -156,8 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         Text("Expenses",
                                             style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                color: Colors.white)),
+                                              fontSize: 12,
+                                            )),
                                         Text("Rs.${value.expense}",
                                             style: GoogleFonts.poppins(
                                                 fontSize: 15,
@@ -176,49 +177,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Transactions",
-                        style: GoogleFonts.poppins(fontSize: 20),
-                      ),
-                      Text(
-                        "View All",
-                        style: GoogleFonts.poppins(fontSize: 15),
-                      ),
-                    ],
+                  Text(
+                    "Chart",
+                    style: GoogleFonts.poppins(fontSize: 20),
                   ),
-                  value.transaction.isEmpty
-                      ? const SizedBox(
-                          height: 400,
-                          child: Center(
-                            child: Text("No transaction"),
-                          ))
-                      : Flexible(
-                          child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: value.transaction.length,
-                              itemBuilder: (context, index) {
-                                return Card(
-                                  color: Colors.white,
-                                  child: ListTile(
-                                    leading: const Icon(
-                                      Icons.arrow_upward_rounded,
-                                      color: Colors.green,
-                                    ),
-                                    title: const Text("Income"),
-                                    trailing: Column(
-                                      children: [
-                                        Text(
-                                            "+${int.parse(value.controller.text)}"),
-                                        Text("Rs.${value.amount}"),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
+                  Flexible(
+                    child: PieChart(
+                      swapAnimationDuration:
+                          const Duration(milliseconds: 150), // Optional
+                      swapAnimationCurve: Curves.linear,
+                      PieChartData(centerSpaceRadius: 0, sections: [
+                        PieChartSectionData(
+                          color: Colors.green,
+                          value: value.income.toDouble(),
+                          title: "Income",
+                          radius: 100,
+                        ),
+                        PieChartSectionData(
+                          color: Colors.red,
+                          value: value.expense.toDouble(),
+                          title: "Expenses",
+                          radius: 100,
                         )
+                      ]),
+                    ),
+                  )
                 ],
               ),
             ),
