@@ -110,16 +110,25 @@ class _AddTransactionState extends State<AddTransaction> {
                   color: Colors.blue,
                   onPressed: () {
                     if (value.select == value.choice[0]) {
+                      IconData icon = Icons.arrow_upward_rounded;
+                      Color color = Colors.green;
                       value.addamount(int.parse(value.digitcontroller.text));
                       value.totalamount(int.parse(value.digitcontroller.text));
+                      value.enter(int.parse(value.digitcontroller.text),
+                          value.namecontroller.text, icon, color);
                     } else {
+                      IconData icon = Icons.arrow_downward_rounded;
+                      Color color = Colors.red;
+
                       value.decreaseamount(
                           int.parse(value.digitcontroller.text));
+                      value.enter(int.parse(value.digitcontroller.text),
+                          value.namecontroller.text, icon, color);
                     }
 
-                    value.enter(int.parse(value.digitcontroller.text),
-                        value.namecontroller.text);
                     Navigator.pop(context);
+                    value.namecontroller.clear();
+                    value.digitcontroller.clear();
                   },
                   child: Text(
                     "Add",
