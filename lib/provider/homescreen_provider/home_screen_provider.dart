@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../view/screen/home_screen/model/card_model.dart';
+
 class AddtransactionProvider with ChangeNotifier {
 // for adding the amount
-  TextEditingController controller = TextEditingController();
+  TextEditingController digitcontroller = TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
   int _amount = 0;
   int get amount => _amount;
 
@@ -42,11 +45,15 @@ class AddtransactionProvider with ChangeNotifier {
   }
 
   // list of the transaction
-  final List<int> _value = [];
-  List<int> get value => _value;
 
-  void addvalue(int money) {
-    value.add(money);
-    notifyListeners();
+  final List<Transaction> _value = [];
+  List<Transaction> get value => _value;
+
+  void enter(int money, String type) {
+    _value.add(Transaction(
+      money,
+      amount,
+      type,
+    ));
   }
 }

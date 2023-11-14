@@ -57,11 +57,36 @@ class _AddTransactionState extends State<AddTransaction> {
                 ),
                 TextField(
                   cursorColor: Colors.lightBlue.shade400,
-                  controller: value.controller,
+                  controller: value.digitcontroller,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                       labelText: "Transaction amount",
+                      labelStyle: TextStyle(color: Colors.lightBlue.shade400),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: BorderSide(
+                          color: Colors.lightBlue.shade400,
+                          width: 2.0,
+                        ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(5),
+                      )),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  cursorColor: Colors.lightBlue.shade400,
+                  controller: value.namecontroller,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                      labelText: "Category",
                       labelStyle: TextStyle(color: Colors.lightBlue.shade400),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -84,21 +109,24 @@ class _AddTransactionState extends State<AddTransaction> {
                       borderRadius: BorderRadius.circular(8)),
                   color: Colors.blue,
                   onPressed: () {
-                    Navigator.pop(context);
-                    value.addvalue(int.parse(value.controller.text));
                     if (value.select == value.choice[0]) {
-                      value.addamount(int.parse(value.controller.text));
-                      value.totalamount(int.parse(value.controller.text));
+                      value.addamount(int.parse(value.digitcontroller.text));
+                      value.totalamount(int.parse(value.digitcontroller.text));
                     } else {
-                      value.decreaseamount(int.parse(value.controller.text));
+                      value.decreaseamount(
+                          int.parse(value.digitcontroller.text));
                     }
+
+                    value.enter(int.parse(value.digitcontroller.text),
+                        value.namecontroller.text);
+                    Navigator.pop(context);
                   },
                   child: Text(
                     "Add",
                     style:
                         GoogleFonts.poppins(fontSize: 15, color: Colors.white),
                   ),
-                )
+                ),
               ],
             );
           }),

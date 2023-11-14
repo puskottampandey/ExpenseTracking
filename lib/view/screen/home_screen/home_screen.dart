@@ -110,11 +110,75 @@ class _HomeScreenState extends State<HomeScreen> {
                         return ListView.builder(
                             itemCount: value.value.length,
                             itemBuilder: (context, int index) {
-                              return Column(
+                              return value.select == value.choice[0]
+                                  ? Card(
+                                      color: Colors.white,
+                                      child: ListTile(
+                                        leading: const Icon(
+                                            Icons.arrow_upward_rounded,
+                                            size: 18,
+                                            color: Colors.green),
+                                        title: Text(
+                                          value.value[index].type.toString(),
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        trailing: Column(
+                                          children: [
+                                            Text(
+                                              "Rs.+${value.value[index].enteramount}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 10,
+                                                  color: Colors.green),
+                                            ),
+                                            Text(
+                                              "Rs.${value.value[index].totalamount.toString()}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 14),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : Card(
+                                      child: ListTile(
+                                        leading: const Icon(
+                                          Icons.arrow_downward_rounded,
+                                          color: Colors.red,
+                                        ),
+                                        title: Text(
+                                          value.value[index].type.toString(),
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        trailing: Column(
+                                          children: [
+                                            Text(
+                                              "-${value.value[index].enteramount}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 10,
+                                                  color: Colors.red),
+                                            ),
+                                            Text(
+                                              "Rs.${value.value[index].totalamount.toString()}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 14),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+
+                              /*
+                              Column(
                                 children: [
-                                  Text(value.amount.toString()),
+                                  Text(value.value[index].enteramount
+                                      .toString()),
                                 ],
                               );
+                              */
                             });
                       },
                     ),
