@@ -40,4 +40,13 @@ class AddtransactionProvider with ChangeNotifier {
     _expense += money;
     notifyListeners();
   }
+
+  // list of the transaction
+  final List<int> _value = [];
+  List<int> get value => _value;
+
+  void addvalue(int money) {
+    value.add(money);
+    notifyListeners();
+  }
 }

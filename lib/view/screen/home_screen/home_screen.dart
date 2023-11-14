@@ -103,6 +103,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ]),
                     ),
+                  ),
+                  Flexible(
+                    child: Consumer<AddtransactionProvider>(
+                      builder: (context, value, child) {
+                        return ListView.builder(
+                            itemCount: value.value.length,
+                            itemBuilder: (context, int index) {
+                              return Column(
+                                children: [
+                                  Text(value.amount.toString()),
+                                ],
+                              );
+                            });
+                      },
+                    ),
                   )
                 ],
               ),
