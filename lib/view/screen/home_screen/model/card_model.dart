@@ -6,6 +6,7 @@ class Transaction {
   String? type;
   IconData? icon;
   Color? color;
+  Color? iconback;
 
   Transaction({
     this.enteramount,
@@ -13,5 +14,6 @@ class Transaction {
     this.type,
     this.icon,
     this.color,
+    this.iconback,
   });
 }

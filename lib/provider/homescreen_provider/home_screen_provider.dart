@@ -49,13 +49,15 @@ class AddtransactionProvider with ChangeNotifier {
   final List<Transaction> _value = [];
   List<Transaction> get value => _value;
 
-  void enter(int money, String type, IconData icon, Color color) {
+  void enter(
+      int money, String type, IconData icon, Color color, Color iconback) {
     _value.add(Transaction(
       enteramount: money,
       totalamount: amount,
       type: type,
       icon: icon,
       color: color,
+      iconback: iconback,
     ));
   }
 }

@@ -112,18 +112,19 @@ class _AddTransactionState extends State<AddTransaction> {
                     if (value.select == value.choice[0]) {
                       IconData icon = Icons.arrow_upward_rounded;
                       Color color = Colors.green;
+                      Color iconback = Colors.green.shade100;
                       value.addamount(int.parse(value.digitcontroller.text));
                       value.totalamount(int.parse(value.digitcontroller.text));
                       value.enter(int.parse(value.digitcontroller.text),
-                          value.namecontroller.text, icon, color);
+                          value.namecontroller.text, icon, color, iconback);
                     } else {
                       IconData icon = Icons.arrow_downward_rounded;
                       Color color = Colors.red;
-
+                      Color iconback = Colors.red.shade100;
                       value.decreaseamount(
                           int.parse(value.digitcontroller.text));
                       value.enter(int.parse(value.digitcontroller.text),
-                          value.namecontroller.text, icon, color);
+                          value.namecontroller.text, icon, color, iconback);
                     }
 
                     Navigator.pop(context);

@@ -30,7 +30,7 @@ class _TotalAmountState extends State<TotalAmount> {
                     Text(
                       "Total Balanced",
                       style: GoogleFonts.poppins(
-                        fontSize: 15,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -66,11 +66,13 @@ class _TotalAmountState extends State<TotalAmount> {
                             children: [
                               Text("Income",
                                   style: GoogleFonts.poppins(
-                                    fontSize: 12,
+                                    fontSize: 15,
                                   )),
                               Text("Rs.${value.income}",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15, color: Colors.green)),
+                                      fontSize: 15,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w500)),
                             ],
                           )
                         ],
@@ -93,11 +95,13 @@ class _TotalAmountState extends State<TotalAmount> {
                             children: [
                               Text("Expenses",
                                   style: GoogleFonts.poppins(
-                                    fontSize: 12,
+                                    fontSize: 15,
                                   )),
                               Text("Rs.${value.expense}",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15, color: Colors.red)),
+                                      fontSize: 15,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.w500)),
                             ],
                           )
                         ],
