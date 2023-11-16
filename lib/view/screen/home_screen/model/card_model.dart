@@ -7,13 +7,14 @@ class Transaction {
   IconData? icon;
   Color? color;
   Color? iconback;
+  String? addsub;
 
-  Transaction({
-    this.enteramount,
-    this.totalamount,
-    this.type,
-    this.icon,
-    this.color,
-    this.iconback,
-  });
+  Transaction(
+      {this.enteramount,
+      this.totalamount,
+      this.type,
+      this.icon,
+      this.color,
+      this.iconback,
+      this.addsub});
 }

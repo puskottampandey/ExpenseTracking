@@ -138,10 +138,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (context, value, child) {
                           return value.value.isNotEmpty
                               ? ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
                                   itemCount: value.value.length,
                                   itemBuilder: (context, int index) {
                                     return Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(5.0),
                                       child: Container(
                                         height:
                                             MediaQuery.sizeOf(context).height *
@@ -176,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             trailing: Column(
                                               children: [
                                                 Text(
-                                                  "Rs.${value.value[index].enteramount.toString()}",
+                                                  "Rs.${value.value[index].addsub}${value.value[index].enteramount.toString()}",
                                                   style: GoogleFonts.poppins(
                                                       fontSize: 10,
                                                       color: value
