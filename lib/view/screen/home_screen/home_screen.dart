@@ -29,6 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.grey.shade100,
       body: Consumer<AddtransactionProvider>(
         builder: (context, value, child) {
+          //income in percent
+          double fraction = (value.expense / value.income);
+          double percent = (fraction * 100);
+
           return SingleChildScrollView(
             child: SafeArea(
               child: Padding(
@@ -89,37 +93,125 @@ class _HomeScreenState extends State<HomeScreen> {
                     // PieChart for the income and expenses
 
                     SizedBox(
-                        height: 200,
-                        child: value.value.isNotEmpty
-                            ? PieChart(
-                                swapAnimationDuration: const Duration(
-                                    milliseconds: 150), // Optional
-                                swapAnimationCurve: Curves.linear,
-                                PieChartData(centerSpaceRadius: 0, sections: [
-                                  PieChartSectionData(
-                                    color: Colors.green,
-                                    value: value.income.toDouble(),
-                                    title: "Income",
-                                    radius: 100,
+                      height: 200,
+                      child: value.value.isNotEmpty
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                    height: 200,
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Colors.grey.shade100),
+                                    child: PieChart(
+                                      swapAnimationDuration: const Duration(
+                                          milliseconds: 150), // Optional
+                                      swapAnimationCurve: Curves.linear,
+                                      PieChartData(
+                                          centerSpaceRadius: 30,
+                                          sections: [
+                                            PieChartSectionData(
+                                              showTitle: false,
+                                              color: Colors.green,
+                                              value: value.income.toDouble(),
+                                              radius: 50,
+                                            ),
+                                            PieChartSectionData(
+                                              color: Colors.red,
+                                              value: value.expense.toDouble(),
+                                              showTitle: false,
+                                              radius: 50,
+                                            ),
+                                            PieChartSectionData(
+                                              showTitle: false,
+                                              color: Colors.yellow,
+                                              value: value.amount.toDouble(),
+                                              radius: 50,
+                                            ),
+                                          ]),
+                                    )),
+                                Container(
+                                  height: 200,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.grey.shade100),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            height: 20,
+                                            width: 20,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.green),
+                                          ),
+                                          Container(
+                                            height: 20,
+                                            width: 20,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.red),
+                                          ),
+                                          Container(
+                                            height: 20,
+                                            width: 20,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.yellow),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Income",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Text(
+                                            "Expense",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Text(
+                                            "Total",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
-                                  PieChartSectionData(
-                                    color: Colors.red,
-                                    value: value.expense.toDouble(),
-                                    title: "Expenses",
-                                    radius: 100,
-                                  )
-                                ]),
-                              )
-                            : Center(
-                                child: Text(
-                                  "No Income and expenses!",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              )),
+                                )
+                              ],
+                            )
+                          : Center(
+                              child: Text(
+                                "No Income and expenses!",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                    ),
                     const SizedBox(
-                      height: 5,
+                      height: 15,
                     ),
                     Text(
                       "Transaction",
